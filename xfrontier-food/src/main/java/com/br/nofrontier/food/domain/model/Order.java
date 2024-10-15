@@ -106,7 +106,7 @@ public class Order extends AbstractAggregateRoot<Order> {
 	}
 
 	public void cancelar() {
-		setStatus(OrderStatus.CANCELED);
+		setStatus(OrderStatus.CANCELLED);
 		setCancellationDate(OffsetDateTime.now());
 
 		registerEvent(new OrderCancelledEvent(this));
@@ -121,7 +121,7 @@ public class Order extends AbstractAggregateRoot<Order> {
 	}
 
 	public boolean podeSerCancelado() {
-		return getStatus().canChangeTo(OrderStatus.CANCELED);
+		return getStatus().canChangeTo(OrderStatus.CANCELLED);
 	}
 
 	private void setStatus(OrderStatus newStatus) {

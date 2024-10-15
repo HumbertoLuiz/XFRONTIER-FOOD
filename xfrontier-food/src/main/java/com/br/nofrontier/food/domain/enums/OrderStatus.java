@@ -9,7 +9,7 @@ public enum OrderStatus {
 	CREATED("Created"), 
 	CONFIRMED("Confirmed", CREATED), 
 	DELIVERED("Delivered", CONFIRMED),
-	CANCELED("Canceled", CREATED);
+	CANCELLED("Cancelled", CREATED);
 
 	private String description;
 	private List<OrderStatus> previousStatus;

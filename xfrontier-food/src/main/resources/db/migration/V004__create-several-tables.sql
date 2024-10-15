@@ -6,7 +6,7 @@ create table payment_method (
 
 create table group_entity (
 	id bigint not null auto_increment,
-	name varchar(255) not null,
+	name varchar(60) not null,
 	
 	primary key (id)
 ) engine=InnoDB default charset=utf8;
@@ -44,12 +44,13 @@ create table restaurant (
 	shipping_rate decimal(10,2) not null,
 	update_date datetime not null,
 	register_date datetime not null,	
+	
   	city_id bigint(20),
-  	zip_code varchar(255),
-  	street varchar(255),
-  	number varchar(255),
-  	complement varchar(255),
-  	neighborhood varchar(255), 
+  	zip_code varchar(9),
+  	street varchar(100),
+  	number varchar(20),
+  	complement varchar(60),
+  	neighborhood varchar(60), 
 	
 	primary key (id)
 ) engine=InnoDB default charset=utf8;

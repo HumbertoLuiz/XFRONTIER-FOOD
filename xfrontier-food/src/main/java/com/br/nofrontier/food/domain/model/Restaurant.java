@@ -80,7 +80,7 @@ public class Restaurant {
 	@Column(nullable = false, name = "update_date", columnDefinition = "datetime")
 	private OffsetDateTime updateDate;
 
-	//@JsonIgnore
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "restaurant_payment_method", joinColumns = @JoinColumn(name = "restaurant_id"), inverseJoinColumns = @JoinColumn(name = "payment_method_id"))
 	private Set<PaymentMethod> paymentMethods = new HashSet<>();

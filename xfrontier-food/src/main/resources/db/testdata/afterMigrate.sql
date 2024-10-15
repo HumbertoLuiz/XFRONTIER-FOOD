@@ -1,11 +1,11 @@
-/*
-
 set foreign_key_checks = 0;
 
 lock tables city write, kitchen write, state write, payment_method write, group_entity write, 
 			group_permission write, permission write, product write, restaurant write, 
 			restaurant_payment_method write, restaurant_user_responsible write, user_entity write, 
 			user_group write, order_entity write, order_item write, product_image write, oauth2_registered_client write;
+
+SET SQL_SAFE_UPDATES=0;
 
 delete from city;
 delete from kitchen;
@@ -24,6 +24,8 @@ delete from order_entity;
 delete from order_item;
 delete from product_image;
 delete from oauth2_registered_client;
+
+SET SQL_SAFE_UPDATES=1;
 
 set foreign_key_checks = 1;
 
@@ -55,17 +57,17 @@ insert into city (id, name, state_id) values (4, 'Campinas', 2);
 insert into city (id, name, state_id) values (5, 'Fortaleza', 3);
 
 insert into restaurant (id, name, shipping_rate, kitchen_id, register_date, update_date, active, open, city_id, zip_code, street, number, complement, neighborhood)
-values (1, 'Thai Gourmet', 10, 1, utc_timestamp, utc_timestamp, true, true, 1, '999999-000', 'Rua Bragança', '223', 'posto shell', 'Lancaster');
+values (1, 'Thai Gourmet', 10, 1, utc_timestamp, utc_timestamp, true, true, 1, '99999-000', 'Rua Bragança', '223', 'posto shell', 'Lancaster');
 insert into restaurant (id, name, shipping_rate, kitchen_id, register_date, update_date, active, open, city_id, zip_code, street, number, complement, neighborhood) 
-values (2, 'Thai Delivery', 9.50, 1, utc_timestamp, utc_timestamp, true, true, 1, '999999-000', 'Rua Bragança', '223', 'posto shell', 'Lancaster');
+values (2, 'Thai Delivery', 9.50, 1, utc_timestamp, utc_timestamp, true, true, 1, '99999-000', 'Rua Bragança', '223', 'posto shell', 'Lancaster');
 insert into restaurant (id, name, shipping_rate, kitchen_id, register_date, update_date, active, open, city_id, zip_code, street, number, complement, neighborhood) 
-values (3, 'Tuk Tuk Comida Indiana', 15, 2, utc_timestamp, utc_timestamp, true, true, 1, '999999-000', 'Rua Bragança', '223', 'posto shell', 'Lancaster');
+values (3, 'Tuk Tuk Comida Indiana', 15, 2, utc_timestamp, utc_timestamp, true, true, 1, '99999-000', 'Rua Bragança', '223', 'posto shell', 'Lancaster');
 insert into restaurant (id, name, shipping_rate, kitchen_id, register_date, update_date, active, open, city_id, zip_code, street, number, complement, neighborhood) 
-values (4, 'Java Steakhouse', 12, 3, utc_timestamp, utc_timestamp, true, true, 1, '999999-000', 'Rua Bragança', '223', 'posto shell', 'Lancaster');
+values (4, 'Java Steakhouse', 12, 3, utc_timestamp, utc_timestamp, true, true, 1, '99999-000', 'Rua Bragança', '223', 'posto shell', 'Lancaster');
 insert into restaurant (id, name, shipping_rate, kitchen_id, register_date, update_date, active, open, city_id, zip_code, street, number, complement, neighborhood) 
-values (5, 'Lanchonete do Tio Sam', 11, 4, utc_timestamp, utc_timestamp, true, true, 1, '999999-000', 'Rua Bragança', '223', 'posto shell', 'Lancaster');
+values (5, 'Lanchonete do Tio Sam', 11, 4, utc_timestamp, utc_timestamp, true, true, 1, '99999-000', 'Rua Bragança', '223', 'posto shell', 'Lancaster');
 insert into restaurant (id, name, shipping_rate, kitchen_id, register_date, update_date, active, open, city_id, zip_code, street, number, complement, neighborhood)
-values (6, 'Bar da Maria', 6, 4, utc_timestamp, utc_timestamp, true, true, 1, '999999-000', 'Rua Bragança', '223', 'posto shell', 'Lancaster');
+values (6, 'Bar da Maria', 6, 4, utc_timestamp, utc_timestamp, true, true, 1, '99999-000', 'Rua Bragança', '223', 'posto shell', 'Lancaster');
 
 insert into payment_method (id, description, update_date) values (1, 'Credit Card', utc_timestamp);
 insert into payment_method (id, description, update_date) values (2, 'Debit Card', utc_timestamp);
@@ -174,8 +176,6 @@ values (5, '8d774bcf-b238-42f3-aef1-5fb388754d63', 1, 3, 2, 1, '38400-200', 'Rua
 insert into order_item (id, order_id, product_id, quantity, unit_price, total_price, observation)
 values (6, 5, 3, 1, 87.2, 87.2, null);
 
-
-
 INSERT INTO oauth2_registered_client
 (id, client_id, client_id_issued_at, client_secret, client_secret_expires_at, client_name, client_authentication_methods, authorization_grant_types, redirect_uris, scopes, client_settings, token_settings)
 VALUES('1', 'nofrontierfood-backend', '2022-11-29 18:58:12', '$2a$10$trk401po.Wx9JXXMs2xCFeB.eXU7qENFquETcr04a0hDJxGV3ge0.', NULL, 'NoFrontierFood Backend', 'client_secret_basic', 'client_credentials', '', 'READ', '{"@class":"java.util.Collections$UnmodifiableMap","settings.client.require-proof-key":false,"settings.client.require-authorization-consent":false}', '{"@class":"java.util.Collections$UnmodifiableMap","settings.token.reuse-refresh-tokens":true,"settings.token.id-token-signature-algorithm":["org.springframework.security.oauth2.jose.jws.SignatureAlgorithm","RS256"],"settings.token.access-token-time-to-live":["java.time.Duration",1800.000000000],"settings.token.access-token-format":{"@class":"org.springframework.security.oauth2.server.authorization.settings.OAuth2TokenFormat","value":"self-contained"},"settings.token.refresh-token-time-to-live":["java.time.Duration",3600.000000000],"settings.token.authorization-code-time-to-live":["java.time.Duration",300.000000000]}');
@@ -189,5 +189,3 @@ INSERT INTO oauth2_registered_client
 VALUES('3', 'foodanalytics', '2022-11-29 18:58:12', '$2a$10$LQOU54Ta7zV7TxTXSk7DEeZUx/P9PwKGH5CTIOLNGWgIP29QHdq4K', NULL, 'Food Analytics', 'client_secret_basic', 'authorization_code', 'http://www.foodanalytics.local:8082', 'READ,WRITE', '{"@class":"java.util.Collections$UnmodifiableMap","settings.client.require-proof-key":false,"settings.client.require-authorization-consent":false}', '{"@class":"java.util.Collections$UnmodifiableMap","settings.token.reuse-refresh-tokens":true,"settings.token.id-token-signature-algorithm":["org.springframework.security.oauth2.jose.jws.SignatureAlgorithm","RS256"],"settings.token.access-token-time-to-live":["java.time.Duration",1800.000000000],"settings.token.access-token-format":{"@class":"org.springframework.security.oauth2.server.authorization.settings.OAuth2TokenFormat","value":"self-contained"},"settings.token.refresh-token-time-to-live":["java.time.Duration",3600.000000000],"settings.token.authorization-code-time-to-live":["java.time.Duration",300.000000000]}');
 
 unlock tables;
-
-*/

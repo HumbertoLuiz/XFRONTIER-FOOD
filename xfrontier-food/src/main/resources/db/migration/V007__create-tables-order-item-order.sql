@@ -1,15 +1,15 @@
 create table order_entity (
   id bigint not null auto_increment,
-  subtotal decimal(38,2) not null,
-  shipping_rate decimal(38,2) not null,
-  total_value decimal(38,2) not null,
+  subtotal decimal(10,2) not null,
+  shipping_rate decimal(10,2) not null,
+  total_value decimal(10,2) not null,
  
   city_id bigint(20) not null,
-  zip_code varchar(255) not null,
-  street varchar(255) not null,
-  number varchar(255) not null,
-  complement varchar(255) null,
-  neighborhood varchar(255) not null,  
+  zip_code varchar(9) not null,
+  street varchar(100) not null,
+  number varchar(20) not null,
+  complement varchar(60) null,
+  neighborhood varchar(60) not null,  
 
   status varchar(10) not null,
   creation_date datetime not null,
